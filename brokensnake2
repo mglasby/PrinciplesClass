@@ -104,6 +104,7 @@ while True:
     # handling key events
     for event in pygame.event.get():
         # TODO 1: complete the movement commands
+        #done by syailendra
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
                 game_over()
@@ -111,7 +112,10 @@ while True:
                 change_to = 'UP'
             if event.key == pygame.K_RIGHT:
                 change_to = 'RIGHT'
-            
+            if event.key == pygame.K_LEFT:
+                change_to = 'LEFT'
+            if event.key == pygame.K_DOWN:
+                change_to = 'DOWN'
 
     # If two keys pressed simultaneously
     # we don't want snake to move into two 
@@ -126,12 +130,16 @@ while True:
         direction = 'RIGHT'
 
     # TODO 2: complete the movements
+    #done by syailendra
     # Moving the snake
     if direction == 'UP':
-        snake_position[1] -= 10
+        snake_position[1]  -= 10
     if direction == 'RIGHT':
-        snake_position[0] += 10
-
+        snake_position[0]  += 10
+    if direction == 'DOWN':
+        snake_position[1]  += 10
+    if direction == 'LEFT':
+        snake_position[0]  -= 10
     # Snake body growing mechanism
     # if fruits and snakes collide then scores
     # will be incremented by 10
@@ -139,6 +147,7 @@ while True:
     snake_body.insert(0, list(snake_position))
     if snake_position[0] == fruit_position[0] and snake_position[1] == fruit_position[1]:
         fruit_exists = False
+        score = score + 1
     else:
         snake_body.pop()
         
